@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MesaEditDlg" widgetVar="MesaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMesaTitle}">
+            <h:form id="MesaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMesaLabel_mesaId}" for="mesaId" />
+                        <p:inputText id="mesaId" value="#{mesaController.selected.mesaId}" title="#{bundle.EditMesaTitle_mesaId}" required="true" requiredMessage="#{bundle.EditMesaRequiredMessage_mesaId}"/>
+                        <p:outputLabel value="#{bundle.EditMesaLabel_numeroMesa}" for="numeroMesa" />
+                        <p:inputText id="numeroMesa" value="#{mesaController.selected.numeroMesa}" title="#{bundle.EditMesaTitle_numeroMesa}" />
+                        <p:outputLabel value="#{bundle.EditMesaLabel_statusMesa}" for="statusMesa" />
+                        <p:inputText id="statusMesa" value="#{mesaController.selected.statusMesa}" title="#{bundle.EditMesaTitle_statusMesa}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mesaController.update}" value="#{bundle.Save}" update="display,:MesaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MesaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MesaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

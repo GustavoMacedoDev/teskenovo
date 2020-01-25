@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProdutoViewDlg" widgetVar="ProdutoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProdutoTitle}">
+            <h:form id="ProdutoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{produtoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProdutoLabel_idProduto}"/>
+                        <h:outputText value="#{produtoController.selected.idProduto}" title="#{bundle.ViewProdutoTitle_idProduto}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_produto}"/>
+                        <h:outputText value="#{produtoController.selected.produto}" title="#{bundle.ViewProdutoTitle_produto}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_valorProduto}"/>
+                        <h:outputText value="#{produtoController.selected.valorProduto}" title="#{bundle.ViewProdutoTitle_valorProduto}"/>
+                        <h:outputText value="#{bundle.ViewProdutoLabel_categoriaId}"/>
+                        <h:outputText value="#{produtoController.selected.categoriaId}" title="#{bundle.ViewProdutoTitle_categoriaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProdutoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

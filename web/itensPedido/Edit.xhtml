@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ItensPedidoEditDlg" widgetVar="ItensPedidoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditItensPedidoTitle}">
+            <h:form id="ItensPedidoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{itensPedidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_idItensPedido}" for="idItensPedido" />
+                        <p:inputText id="idItensPedido" value="#{itensPedidoController.selected.idItensPedido}" title="#{bundle.EditItensPedidoTitle_idItensPedido}" required="true" requiredMessage="#{bundle.EditItensPedidoRequiredMessage_idItensPedido}"/>
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_quantidade}" for="quantidade" />
+                        <p:inputText id="quantidade" value="#{itensPedidoController.selected.quantidade}" title="#{bundle.EditItensPedidoTitle_quantidade}" />
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{itensPedidoController.selected.valorTotal}" title="#{bundle.EditItensPedidoTitle_valorTotal}" />
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_valorUnitario}" for="valorUnitario" />
+                        <p:inputText id="valorUnitario" value="#{itensPedidoController.selected.valorUnitario}" title="#{bundle.EditItensPedidoTitle_valorUnitario}" />
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_pedidoIdPedido}" for="pedidoIdPedido" />
+                        <p:selectOneMenu id="pedidoIdPedido" value="#{itensPedidoController.selected.pedidoIdPedido}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"
+                                           var="pedidoIdPedidoItem"
+                                           itemValue="#{pedidoIdPedidoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditItensPedidoLabel_produtoIdProduto}" for="produtoIdProduto" />
+                        <p:selectOneMenu id="produtoIdProduto" value="#{itensPedidoController.selected.produtoIdProduto}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{produtoController.itemsAvailableSelectOne}"
+                                           var="produtoIdProdutoItem"
+                                           itemValue="#{produtoIdProdutoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{itensPedidoController.update}" value="#{bundle.Save}" update="display,:ItensPedidoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ItensPedidoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ItensPedidoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetalheAdicionalEditDlg" widgetVar="DetalheAdicionalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDetalheAdicionalTitle}">
+            <h:form id="DetalheAdicionalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detalheAdicionalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDetalheAdicionalLabel_idDetalheAdicional}" for="idDetalheAdicional" />
+                        <p:inputText id="idDetalheAdicional" value="#{detalheAdicionalController.selected.idDetalheAdicional}" title="#{bundle.EditDetalheAdicionalTitle_idDetalheAdicional}" required="true" requiredMessage="#{bundle.EditDetalheAdicionalRequiredMessage_idDetalheAdicional}"/>
+                        <p:outputLabel value="#{bundle.EditDetalheAdicionalLabel_adicionalIdAdicional}" for="adicionalIdAdicional" />
+                        <p:selectOneMenu id="adicionalIdAdicional" value="#{detalheAdicionalController.selected.adicionalIdAdicional}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{adicionalController.itemsAvailableSelectOne}"
+                                           var="adicionalIdAdicionalItem"
+                                           itemValue="#{adicionalIdAdicionalItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detalheAdicionalController.update}" value="#{bundle.Save}" update="display,:DetalheAdicionalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DetalheAdicionalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetalheAdicionalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

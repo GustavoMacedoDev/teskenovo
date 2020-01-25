@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ItensPedidoCreateDlg" widgetVar="ItensPedidoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateItensPedidoTitle}">
+            <h:form id="ItensPedidoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{itensPedidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_idItensPedido}" for="idItensPedido" />
+                        <p:inputText id="idItensPedido" value="#{itensPedidoController.selected.idItensPedido}" title="#{bundle.CreateItensPedidoTitle_idItensPedido}" required="true" requiredMessage="#{bundle.CreateItensPedidoRequiredMessage_idItensPedido}"/>
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_quantidade}" for="quantidade" />
+                        <p:inputText id="quantidade" value="#{itensPedidoController.selected.quantidade}" title="#{bundle.CreateItensPedidoTitle_quantidade}" />
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_valorTotal}" for="valorTotal" />
+                        <p:inputText id="valorTotal" value="#{itensPedidoController.selected.valorTotal}" title="#{bundle.CreateItensPedidoTitle_valorTotal}" />
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_valorUnitario}" for="valorUnitario" />
+                        <p:inputText id="valorUnitario" value="#{itensPedidoController.selected.valorUnitario}" title="#{bundle.CreateItensPedidoTitle_valorUnitario}" />
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_pedidoIdPedido}" for="pedidoIdPedido" />
+                        <p:selectOneMenu id="pedidoIdPedido" value="#{itensPedidoController.selected.pedidoIdPedido}" >
+                            <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"
+                                           var="pedidoIdPedidoItem"
+                                           itemValue="#{pedidoIdPedidoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateItensPedidoLabel_produtoIdProduto}" for="produtoIdProduto" />
+                        <p:selectOneMenu id="produtoIdProduto" value="#{itensPedidoController.selected.produtoIdProduto}" >
+                            <f:selectItems value="#{produtoController.itemsAvailableSelectOne}"
+                                           var="produtoIdProdutoItem"
+                                           itemValue="#{produtoIdProdutoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{itensPedidoController.create}" value="#{bundle.Save}" update="display,:ItensPedidoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ItensPedidoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ItensPedidoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

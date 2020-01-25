@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="QuantidadeEditDlg" widgetVar="QuantidadeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditQuantidadeTitle}">
+            <h:form id="QuantidadeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{quantidadeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditQuantidadeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{quantidadeController.selected.id}" title="#{bundle.EditQuantidadeTitle_id}" required="true" requiredMessage="#{bundle.EditQuantidadeRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditQuantidadeLabel_quantidade}" for="quantidade" />
+                        <p:inputText id="quantidade" value="#{quantidadeController.selected.quantidade}" title="#{bundle.EditQuantidadeTitle_quantidade}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{quantidadeController.update}" value="#{bundle.Save}" update="display,:QuantidadeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'QuantidadeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="QuantidadeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
