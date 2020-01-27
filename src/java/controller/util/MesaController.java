@@ -1,9 +1,11 @@
 package controller.util;
 
+import bean.LancamentoFacade;
 import domain.Mesa;
 import controller.util.util.JsfUtil;
 import controller.util.util.JsfUtil.PersistAction;
 import bean.MesaFacade;
+import domain.Lancamento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,9 +26,15 @@ import javax.faces.convert.FacesConverter;
 public class MesaController implements Serializable {
 
     @EJB
-    private bean.MesaFacade ejbFacade;
+    private bean.MesaFacade mesaFacade;
+    
+    @EJB
+    private LancamentoFacade lancamentoFacade;
+    
     private List<Mesa> items = null;
     private Mesa selected;
+    
+    private List<Lancamento> lancamentos = null;
 
     public MesaController() {
     }
@@ -45,8 +53,12 @@ public class MesaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private MesaFacade getFacade() {
-        return ejbFacade;
+    private MesaFacade getMesaFacade() {
+        return mesaFacade;
+    }
+
+    public LancamentoFacade getLancamentoFacade() {
+        return lancamentoFacade;
     }
 
     public Mesa prepareCreate() {
@@ -76,9 +88,19 @@ public class MesaController implements Serializable {
 
     public List<Mesa> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = getMesaFacade().findAll();
         }
+        
+        System.out.println("Itens " + items);
         return items;
+    }
+    
+    public List<Lancamento> getLancamentos(Long id) {
+        lancamentos = (List<Lancamento>) getLancamentoFacade().find(id);
+        
+        System.out.println(lancamentos);
+        
+        return lancamentos;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -86,9 +108,9 @@ public class MesaController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    getMesaFacade().edit(selected);
                 } else {
-                    getFacade().remove(selected);
+                    getMesaFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -110,15 +132,15 @@ public class MesaController implements Serializable {
     }
 
     public Mesa getMesa(java.lang.Long id) {
-        return getFacade().find(id);
+        return getMesaFacade().find(id);
     }
 
     public List<Mesa> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+        return getMesaFacade().findAll();
     }
 
     public List<Mesa> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+        return getMesaFacade().findAll();
     }
 
     @FacesConverter(forClass = Mesa.class)
