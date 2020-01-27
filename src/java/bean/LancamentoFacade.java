@@ -29,4 +29,7 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         super(Lancamento.class);
     }
     
+    
+    
+    
 }
