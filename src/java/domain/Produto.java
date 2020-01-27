@@ -47,7 +47,7 @@ public class Produto implements Serializable {
     @Column(name = "produto")
     private String produto;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_produto")
+    @Column(name = "valor_produto", precision = 10, scale = 2)
     private Double valorProduto;
     @OneToMany(mappedBy = "produtoIdProduto")
     private List<Lancamento> lancamentoList;

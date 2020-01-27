@@ -12,8 +12,6 @@
             <h:form id="AdicionalEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{adicionalController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditAdicionalLabel_idAdicional}" for="idAdicional" />
-                        <p:inputText id="idAdicional" value="#{adicionalController.selected.idAdicional}" title="#{bundle.EditAdicionalTitle_idAdicional}" required="true" requiredMessage="#{bundle.EditAdicionalRequiredMessage_idAdicional}"/>
                         <p:outputLabel value="#{bundle.EditAdicionalLabel_descricao}" for="descricao" />
                         <p:inputText id="descricao" value="#{adicionalController.selected.descricao}" title="#{bundle.EditAdicionalTitle_descricao}" />
                         <p:outputLabel value="#{bundle.EditAdicionalLabel_valorAdicional}" for="valorAdicional" />

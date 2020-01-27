@@ -6,10 +6,12 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.criteria.Fetch;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -46,8 +49,10 @@ public class Mesa implements Serializable {
     private String numeroMesa;
     @Column(name = "status_mesa")
     private Integer statusMesa;
-    @OneToMany(mappedBy = "mesaMesaId")
+    
+    @OneToMany(mappedBy = "mesaMesaId", fetch = FetchType.EAGER)
     private List<Lancamento> lancamentoList;
+    
     @OneToMany(mappedBy = "mesaMesaId")
     private List<Pedido> pedidoList;
 

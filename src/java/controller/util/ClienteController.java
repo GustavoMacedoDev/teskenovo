@@ -1,9 +1,9 @@
 package controller.util;
 
-import domain.Produto;
+import domain.Cliente;
 import controller.util.util.JsfUtil;
 import controller.util.util.JsfUtil.PersistAction;
-import bean.ProdutoFacade;
+import bean.ClienteFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("produtoController")
+@Named("clienteController")
 @SessionScoped
-public class ProdutoController implements Serializable {
+public class ClienteController implements Serializable {
 
     @EJB
-    private bean.ProdutoFacade ejbFacade;
-    private List<Produto> items = null;
-    private Produto selected;
+    private bean.ClienteFacade ejbFacade;
+    private List<Cliente> items = null;
+    private Cliente selected;
 
-    public ProdutoController() {
+    public ClienteController() {
     }
 
-    public Produto getSelected() {
+    public Cliente getSelected() {
         return selected;
     }
 
-    public void setSelected(Produto selected) {
+    public void setSelected(Cliente selected) {
         this.selected = selected;
     }
 
@@ -45,41 +45,39 @@ public class ProdutoController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ProdutoFacade getFacade() {
+    private ClienteFacade getFacade() {
         return ejbFacade;
     }
 
-    public Produto prepareCreate() {
-        selected = new Produto();
+    public Cliente prepareCreate() {
+        selected = new Cliente();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProdutoCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ClienteCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProdutoUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProdutoDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ClienteDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Produto> getItems() {
+    public List<Cliente> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
-        
-        System.out.println("lanches" + items);
         return items;
     }
 
@@ -111,29 +109,29 @@ public class ProdutoController implements Serializable {
         }
     }
 
-    public Produto getProduto(java.lang.Long id) {
+    public Cliente getCliente(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Produto> getItemsAvailableSelectMany() {
+    public List<Cliente> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Produto> getItemsAvailableSelectOne() {
+    public List<Cliente> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Produto.class)
-    public static class ProdutoControllerConverter implements Converter {
+    @FacesConverter(forClass = Cliente.class)
+    public static class ClienteControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ProdutoController controller = (ProdutoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "produtoController");
-            return controller.getProduto(getKey(value));
+            ClienteController controller = (ClienteController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "clienteController");
+            return controller.getCliente(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -153,11 +151,11 @@ public class ProdutoController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Produto) {
-                Produto o = (Produto) object;
-                return getStringKey(o.getIdProduto());
+            if (object instanceof Cliente) {
+                Cliente o = (Cliente) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Produto.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Cliente.class.getName()});
                 return null;
             }
         }

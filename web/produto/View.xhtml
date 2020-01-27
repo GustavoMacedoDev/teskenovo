@@ -19,7 +19,7 @@
                         <h:outputText value="#{bundle.ViewProdutoLabel_valorProduto}"/>
                         <h:outputText value="#{produtoController.selected.valorProduto}" title="#{bundle.ViewProdutoTitle_valorProduto}"/>
                         <h:outputText value="#{bundle.ViewProdutoLabel_categoriaId}"/>
-                        <h:outputText value="#{produtoController.selected.categoriaId}" title="#{bundle.ViewProdutoTitle_categoriaId}"/>
+                        <h:outputText value="#{produtoController.selected.categoriaId.descricao}" title="#{bundle.ViewProdutoTitle_categoriaId}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProdutoViewDialog.hide()"/>
                 </h:panelGroup>

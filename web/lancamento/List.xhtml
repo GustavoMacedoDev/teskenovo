@@ -37,19 +37,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLancamentoTitle_mesaMesaId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.mesaMesaId}"/>
+                            <h:outputText value="#{item.mesaMesaId.numeroMesa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLancamentoTitle_produtoIdProduto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.produtoIdProduto}"/>
+                            <h:outputText value="#{item.produtoIdProduto.produto}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLancamentoTitle_quantidadeId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.quantidadeId}"/>
+                            <h:outputText value="#{item.quantidadeId.quantidade}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CreateAdicionalLabel_valorAdicional}"/>
+                            </f:facet>
+                            <h:outputText  value="#{item.produtoIdProduto.valorProduto}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{lancamentoController.prepareCreate}" update=":LancamentoCreateForm" oncomplete="PF('LancamentoCreateDialog').show()"/>
@@ -59,6 +65,17 @@
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
+                
+                <h:commandLink>
+                    <p:graphicImage name="/images/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="cars"/>
+                </h:commandLink>
+                
+                <h3>Export Page Data Only</h3>
+                    <h:commandLink>
+                        <p:graphicImage name="/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="datalist" fileName="cars" pageOnly="true" />
+                    </h:commandLink>
             </h:form>
 
             <ui:include src="Create.xhtml"/>

@@ -28,7 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Lancamento.findAll", query = "SELECT l FROM Lancamento l"),
-    @NamedQuery(name = "Lancamento.findByIdLancamento", query = "SELECT l FROM Lancamento l WHERE l.idLancamento = :idLancamento")})
+    @NamedQuery(name = "Lancamento.findByIdLancamento",
+            query = "SELECT l FROM Lancamento l WHERE l.idLancamento = :idLancamento"),
+    @NamedQuery(name = "Lancamento.findByMesa", 
+            query = "SELECT l FROM Lancamento l, Mesa m")})
+
 public class Lancamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,12 +41,15 @@ public class Lancamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_lancamento")
     private Long idLancamento;
+    
     @JoinColumn(name = "mesa_mesa_id", referencedColumnName = "mesa_id")
     @ManyToOne
     private Mesa mesaMesaId;
+    
     @JoinColumn(name = "produto_id_produto", referencedColumnName = "id_produto")
     @ManyToOne
     private Produto produtoIdProduto;
+    
     @JoinColumn(name = "quantidade_id", referencedColumnName = "id")
     @ManyToOne
     private Quantidade quantidadeId;
@@ -108,7 +115,7 @@ public class Lancamento implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Lancamento[ idLancamento=" + idLancamento + " ]";
+        return "Produto: " + produtoIdProduto.getProduto() + " Valor:" + produtoIdProduto.getValorProduto();
     }
     
 }

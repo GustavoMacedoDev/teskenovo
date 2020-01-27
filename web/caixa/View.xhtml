@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MesaViewDlg" widgetVar="MesaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMesaTitle}">
+            <h:form id="MesaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMesaLabel_mesaId}"/>
+                        <h:outputText value="#{mesaController.selected.mesaId}" title="#{bundle.ViewMesaTitle_mesaId}"/>
+                        <h:outputText value="#{bundle.ViewMesaLabel_numeroMesa}"/>
+                        <h:outputText value="#{mesaController.selected.numeroMesa}" title="#{bundle.ViewMesaTitle_numeroMesa}"/>
+                        <h:outputText value="#{bundle.ViewMesaLabel_statusMesa}"/>
+                        <h:outputText value="#{mesaController.selected.statusMesa}" title="#{bundle.ViewMesaTitle_statusMesa}"/>
+                        <h:outputText value="#{bundle.ViewMesaLabel_statusMesa}"/>
+                        <h:outputText value="#{mesaController.selected.lancamentoList}" title="#{bundle.ViewMesaTitle_statusMesa}"/>
+                        
+                        
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
