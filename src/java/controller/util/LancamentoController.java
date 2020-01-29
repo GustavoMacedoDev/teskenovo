@@ -4,6 +4,7 @@ import domain.Lancamento;
 import controller.util.util.JsfUtil;
 import controller.util.util.JsfUtil.PersistAction;
 import bean.LancamentoFacade;
+import domain.Mesa;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +28,8 @@ public class LancamentoController implements Serializable {
     private bean.LancamentoFacade ejbFacade;
     private List<Lancamento> items = null;
     private Lancamento selected;
+    
+    private List<Lancamento> lancamentosByMesa;
 
     public LancamentoController() {
     }
@@ -80,6 +83,9 @@ public class LancamentoController implements Serializable {
         }
         return items;
     }
+
+    
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

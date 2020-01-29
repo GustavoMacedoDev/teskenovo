@@ -44,7 +44,7 @@ public class Lancamento implements Serializable {
     
     @JoinColumn(name = "mesa_mesa_id", referencedColumnName = "mesa_id")
     @ManyToOne
-    private Mesa mesaMesaId;
+    private Mesa mesa;
     
     @JoinColumn(name = "produto_id_produto", referencedColumnName = "id_produto")
     @ManyToOne
@@ -70,11 +70,11 @@ public class Lancamento implements Serializable {
     }
 
     public Mesa getMesaMesaId() {
-        return mesaMesaId;
+        return mesa;
     }
 
-    public void setMesaMesaId(Mesa mesaMesaId) {
-        this.mesaMesaId = mesaMesaId;
+    public void setMesaMesaId(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public Produto getProdutoIdProduto() {
@@ -115,7 +115,10 @@ public class Lancamento implements Serializable {
 
     @Override
     public String toString() {
-        return "Produto: " + produtoIdProduto.getProduto() + " Valor:" + produtoIdProduto.getValorProduto();
+        
+        return "Produto: " + produtoIdProduto.getProduto() 
+                + " Valor: " + produtoIdProduto.getValorProduto()
+                + " Quantidade: " + quantidadeId.getQuantidade();
     }
     
 }

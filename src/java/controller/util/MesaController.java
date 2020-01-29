@@ -34,7 +34,7 @@ public class MesaController implements Serializable {
     private List<Mesa> items = null;
     private Mesa selected;
     
-    private List<Lancamento> lancamentos = null;
+    private List<Lancamento> lancamentosByMesa;
 
     public MesaController() {
     }
@@ -95,14 +95,6 @@ public class MesaController implements Serializable {
         return items;
     }
     
-    public List<Lancamento> getLancamentos(Long id) {
-        lancamentos = (List<Lancamento>) getLancamentoFacade().find(id);
-        
-        System.out.println(lancamentos);
-        
-        return lancamentos;
-    }
-
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -141,6 +133,13 @@ public class MesaController implements Serializable {
 
     public List<Mesa> getItemsAvailableSelectOne() {
         return getMesaFacade().findAll();
+    }
+    
+    public List<Lancamento> getLancamentosByMesa(Long id) {
+        
+        lancamentosByMesa = lancamentoFacade.getByMesa(id);
+        
+        return lancamentosByMesa;
     }
 
     @FacesConverter(forClass = Mesa.class)

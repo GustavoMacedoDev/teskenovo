@@ -6,7 +6,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.criteria.Fetch;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -50,8 +48,8 @@ public class Mesa implements Serializable {
     @Column(name = "status_mesa")
     private Integer statusMesa;
     
-    @OneToMany(mappedBy = "mesaMesaId", fetch = FetchType.EAGER)
-    private List<Lancamento> lancamentoList;
+    @OneToMany(mappedBy = "mesa", fetch = FetchType.EAGER)
+    private List<Lancamento> lancamentos;
     
     @OneToMany(mappedBy = "mesaMesaId")
     private List<Pedido> pedidoList;
@@ -89,11 +87,11 @@ public class Mesa implements Serializable {
 
     @XmlTransient
     public List<Lancamento> getLancamentoList() {
-        return lancamentoList;
+        return lancamentos;
     }
 
-    public void setLancamentoList(List<Lancamento> lancamentoList) {
-        this.lancamentoList = lancamentoList;
+    public void setLancamentoList(List<Lancamento> lancamentos) {
+        this.lancamentos = lancamentos;
     }
 
     @XmlTransient

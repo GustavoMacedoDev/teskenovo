@@ -6,9 +6,12 @@
 package bean;
 
 import domain.Lancamento;
+import domain.Mesa;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,6 +33,12 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
     }
     
     
-    
+    public List<Lancamento> getByMesa(Long id) {
+        String jpql = "select lc from Lancamento lc where lc.mesa.mesaId = :id";
+	TypedQuery<Lancamento> query = em.createQuery(jpql, Lancamento.class);
+	query.setParameter("id", id);
+	
+        return query.getResultList();
+    }
     
 }
