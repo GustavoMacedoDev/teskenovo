@@ -25,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class LancamentoController implements Serializable {
 
     @EJB
-    private bean.LancamentoFacade ejbFacade;
+    private bean.LancamentoFacade lancamentoFacade;
     private List<Lancamento> items = null;
     private Lancamento selected;
     
@@ -49,7 +49,7 @@ public class LancamentoController implements Serializable {
     }
 
     private LancamentoFacade getFacade() {
-        return ejbFacade;
+        return lancamentoFacade;
     }
 
     public Lancamento prepareCreate() {
@@ -84,7 +84,6 @@ public class LancamentoController implements Serializable {
         return items;
     }
 
-    
     
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -167,5 +166,5 @@ public class LancamentoController implements Serializable {
         }
 
     }
-
+    
 }

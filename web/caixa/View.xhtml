@@ -10,19 +10,18 @@
 
         <p:dialog id="MesaViewDlg" widgetVar="MesaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMesaTitle}">
             <h:form id="MesaViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewMesaLabel_mesaId}"/>
-                        <h:outputText value="#{mesaController.selected.mesaId}" title="#{bundle.ViewMesaTitle_mesaId}"/>
-                        <h:outputText value="#{bundle.ViewMesaLabel_numeroMesa}"/>
-                        <h:outputText value="#{mesaController.selected.numeroMesa}" title="#{bundle.ViewMesaTitle_numeroMesa}"/>
-                         <h:outputText value="#{bundle.ViewMesaLabel_statusMesa}"/>
-                        <h:outputText value="#{mesaController.selected.statusMesa}" title="#{bundle.ViewMesaTitle_statusMesa}"/>
-                         <h:outputText value="#{bundle.ViewMesaLabel_statusMesa}"/>
-                         <h:outputText value="#{mesaController.selected.lancamentoList}" title="#{bundle.ViewMesaTitle_statusMesa}"/>
-                    
+               <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lancamentoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLancamentoLabel_idLancamento}"/>
+                        <h:outputText value="#{lancamentoController.selected.idLancamento}" title="#{bundle.ViewLancamentoTitle_idLancamento}"/>
+                        <h:outputText value="#{bundle.ViewLancamentoLabel_mesaMesaId}"/>
+                        <h:outputText value="#{lancamentoController.selected.mesaMesaId}" title="#{bundle.ViewLancamentoTitle_mesaMesaId}"/>
+                        <h:outputText value="#{bundle.ViewLancamentoLabel_produtoIdProduto}"/>
+                        <h:outputText value="#{lancamentoController.selected.produtoIdProduto}" title="#{bundle.ViewLancamentoTitle_produtoIdProduto}"/>
+                        <h:outputText value="#{bundle.ViewLancamentoLabel_quantidadeId}"/>
+                        <h:outputText value="#{lancamentoController.selected.quantidadeId}" title="#{bundle.ViewLancamentoTitle_quantidadeId}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Close}" onclick="LancamentoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

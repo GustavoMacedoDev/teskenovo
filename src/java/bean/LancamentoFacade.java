@@ -33,11 +33,16 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
     }
     
     
-    public List<Lancamento> getByMesa(Long id) {
+    public List<Lancamento> getByMesa(String id) {
+        
+        System.out.println("Id : " + id);
+        
         String jpql = "select lc from Lancamento lc where lc.mesa.mesaId = :id";
 	TypedQuery<Lancamento> query = em.createQuery(jpql, Lancamento.class);
 	query.setParameter("id", id);
 	
+        System.out.println("Resultado " + query.getResultList() );
+        
         return query.getResultList();
     }
     

@@ -116,6 +116,8 @@ public class Lancamento implements Serializable {
     @Override
     public String toString() {
         
+        System.out.println("" + produtoIdProduto);
+        
         return "Produto: " + produtoIdProduto.getProduto() 
                 + " Valor: " + produtoIdProduto.getValorProduto()
                 + " Quantidade: " + quantidadeId.getQuantidade();

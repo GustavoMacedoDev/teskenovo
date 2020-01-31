@@ -16,10 +16,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.SelectEvent;
 
 @Named("mesaController")
 @SessionScoped
@@ -91,9 +93,21 @@ public class MesaController implements Serializable {
             items = getMesaFacade().findAll();
         }
         
-        System.out.println("Itens " + items);
         return items;
     }
+    
+    
+    public List<Lancamento> getLancamentosByMesa(String id) {
+        
+         System.out.println("Id : " + id);
+        
+        lancamentosByMesa = lancamentoFacade.getByMesa(id);
+        
+        System.out.println("lancamentos" + lancamentosByMesa);
+        
+        return lancamentosByMesa;
+    }
+    
     
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -135,12 +149,6 @@ public class MesaController implements Serializable {
         return getMesaFacade().findAll();
     }
     
-    public List<Lancamento> getLancamentosByMesa(Long id) {
-        
-        lancamentosByMesa = lancamentoFacade.getByMesa(id);
-        
-        return lancamentosByMesa;
-    }
 
     @FacesConverter(forClass = Mesa.class)
     public static class MesaControllerConverter implements Converter {
@@ -182,5 +190,20 @@ public class MesaController implements Serializable {
         }
 
     }
+    
+    public void onRowSelect(SelectEvent<Mesa> event) {
+        FacesMessage msg;
+        msg = new FacesMessage("Car Selected", event.getObject().getMesaId().toString());
+        
+        System.out.println("" + event.getObject().getMesaId().toString());
+        
+        String id = event.getObject().getMesaId().toString();
+        
+        getLancamentosByMesa(id);
+        
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+ 
+    
 
 }
