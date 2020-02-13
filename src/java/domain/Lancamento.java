@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +36,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class Lancamento implements Serializable {
 
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor_total_lancamento", nullable = false)
+    private double valorTotalLancamento;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,8 +59,6 @@ public class Lancamento implements Serializable {
     @ManyToOne
     private Quantidade quantidadeId;
     
-    @Column(name = "valor_total_lancamento", precision = 10, scale = 2)
-    private Double valorTotalLancamento;
 
     public Lancamento() {
     }
@@ -126,13 +129,12 @@ public class Lancamento implements Serializable {
                 + " Quantidade: " + quantidadeId.getQuantidade();
     }
 
-    public Double getValorTotalLancamento() {
+    public double getValorTotalLancamento() {
         return valorTotalLancamento;
     }
 
-    public void setValorTotalLancamento(Double valorTotalLancamento) {
+    public void setValorTotalLancamento(double valorTotalLancamento) {
         this.valorTotalLancamento = valorTotalLancamento;
     }
-    
-    
+
 }

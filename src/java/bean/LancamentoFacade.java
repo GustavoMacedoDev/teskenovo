@@ -40,7 +40,7 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         
         total = valorProduto * quantidade;
         
-        lancamento.setValorTotalLancamento(valorProduto);
+        lancamento.setValorTotalLancamento(total);
         
         em.persist(lancamento);
         System.out.println("Awquiiii" + lancamento);

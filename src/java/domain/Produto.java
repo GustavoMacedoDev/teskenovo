@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -37,6 +38,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByValorProduto", query = "SELECT p FROM Produto p WHERE p.valorProduto = :valorProduto")})
 public class Produto implements Serializable {
 
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor_produto")
+    private double valorProduto;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,9 +51,6 @@ public class Produto implements Serializable {
     @Size(max = 255)
     @Column(name = "produto")
     private String produto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_produto", precision = 10, scale = 2)
-    private Double valorProduto;
     @OneToMany(mappedBy = "produtoIdProduto")
     private List<Lancamento> lancamentoList;
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
@@ -138,5 +140,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "" + produto;
     }
-    
+
 }
