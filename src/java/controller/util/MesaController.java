@@ -16,13 +16,10 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.faces.event.AjaxBehaviorEvent;
-import org.primefaces.event.SelectEvent;
 
 @Named("mesaController")
 @SessionScoped
@@ -48,6 +45,8 @@ public class MesaController implements Serializable {
         if(selected != null) {
         
             selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
+            
+            
          
             return selected;
         }
@@ -115,7 +114,12 @@ public class MesaController implements Serializable {
         
         lancamentosByMesa = lancamentoFacade.getByMesa(id);
         
-        //System.out.print(lancamentosByMesa);
+//        lancamentosByMesa.forEach((lancs) -> {
+//            double totalMesa;
+//            totalMesa = lancs.getValorTotalLancamento();
+//            
+//            System.out.print(totalMesa);
+//        });
         
         return lancamentosByMesa;
     }

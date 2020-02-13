@@ -35,14 +35,19 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
     public void create(Lancamento lancamento) {
         
         double total;
+        
         double valorProduto = lancamento.getProdutoIdProduto().getValorProduto();
+        
         int quantidade = lancamento.getQuantidadeId().getQuantidade();
         
         total = valorProduto * quantidade;
         
+        
         lancamento.setValorTotalLancamento(total);
         
+        
         em.persist(lancamento);
+        
         System.out.println("Awquiiii" + lancamento);
     }
     
