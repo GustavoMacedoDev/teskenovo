@@ -21,6 +21,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.event.SelectEvent;
 
 @Named("mesaController")
@@ -35,6 +36,7 @@ public class MesaController implements Serializable {
     
     private List<Mesa> items = null;
     private Mesa selected;
+    private Lancamento lancamento;
     
     private List<Lancamento> lancamentosByMesa;
 
@@ -42,7 +44,17 @@ public class MesaController implements Serializable {
     }
 
     public Mesa getSelected() {
-        return selected;
+        
+        if(selected != null) {
+        
+            selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
+         
+            return selected;
+        }
+        
+        
+       return new Mesa();
+        
     }
 
     public void setSelected(Mesa selected) {
@@ -89,21 +101,21 @@ public class MesaController implements Serializable {
     }
 
     public List<Mesa> getItems() {
-        if (items == null) {
-            items = getMesaFacade().findAll();
-        }
+        
+        
+        items = getMesaFacade().findAll();
         
         return items;
     }
     
     
-    public List<Lancamento> getLancamentosByMesa(String id) {
+    public List<Lancamento> getLancamentosByMesa(Long id) {
         
-         System.out.println("Id : " + id);
+        System.out.println("Id passado" + id);
         
         lancamentosByMesa = lancamentoFacade.getByMesa(id);
         
-        System.out.println("lancamentos" + lancamentosByMesa);
+        //System.out.print(lancamentosByMesa);
         
         return lancamentosByMesa;
     }
@@ -191,19 +203,4 @@ public class MesaController implements Serializable {
 
     }
     
-    public void onRowSelect(SelectEvent<Mesa> event) {
-        FacesMessage msg;
-        msg = new FacesMessage("Car Selected", event.getObject().getMesaId().toString());
-        
-        System.out.println("" + event.getObject().getMesaId().toString());
-        
-        String id = event.getObject().getMesaId().toString();
-        
-        getLancamentosByMesa(id);
-        
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
- 
-    
-
 }

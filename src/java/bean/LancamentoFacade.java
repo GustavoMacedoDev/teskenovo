@@ -6,7 +6,6 @@
 package bean;
 
 import domain.Lancamento;
-import domain.Mesa;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,6 +21,7 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
 
     @PersistenceContext(unitName = "TeskePU")
     private EntityManager em;
+    private Class<Lancamento> entityClass;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -31,19 +31,37 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
     public LancamentoFacade() {
         super(Lancamento.class);
     }
+
+    public void create(Lancamento lancamento) {
+        
+        double total;
+        double valorProduto = lancamento.getProdutoIdProduto().getValorProduto();
+        int quantidade = lancamento.getQuantidadeId().getQuantidade();
+        
+        total = valorProduto * quantidade;
+        
+        lancamento.setValorTotalLancamento(valorProduto);
+        
+        em.persist(lancamento);
+        System.out.println("Awquiiii" + lancamento);
+    }
     
     
-    public List<Lancamento> getByMesa(String id) {
+    public List<Lancamento> getByMesa(Long id) {
         
-        System.out.println("Id : " + id);
+        System.out.println("id chegado" + id);
         
-        String jpql = "select lc from Lancamento lc where lc.mesa.mesaId = :id";
-	TypedQuery<Lancamento> query = em.createQuery(jpql, Lancamento.class);
-	query.setParameter("id", id);
-	
-        System.out.println("Resultado " + query.getResultList() );
+        String jpql = "from Lancamento l where l.mesa.mesaId = :id";
+        TypedQuery<Lancamento> query = em.createQuery(jpql, Lancamento.class);
+        query.setParameter("id", id);
+        
+        System.out.println("Resultado " + query.getResultList());
         
         return query.getResultList();
+        
     }
+    
+    
+   
     
 }

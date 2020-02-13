@@ -8,23 +8,60 @@
 
     <ui:composition>
 
-        <p:dialog id="MesaViewDlg" widgetVar="MesaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMesaTitle}">
-            <h:form id="MesaViewForm">
-               <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{lancamentoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewLancamentoLabel_idLancamento}"/>
-                        <h:outputText value="#{lancamentoController.selected.idLancamento}" title="#{bundle.ViewLancamentoTitle_idLancamento}"/>
-                        <h:outputText value="#{bundle.ViewLancamentoLabel_mesaMesaId}"/>
-                        <h:outputText value="#{lancamentoController.selected.mesaMesaId}" title="#{bundle.ViewLancamentoTitle_mesaMesaId}"/>
-                        <h:outputText value="#{bundle.ViewLancamentoLabel_produtoIdProduto}"/>
-                        <h:outputText value="#{lancamentoController.selected.produtoIdProduto}" title="#{bundle.ViewLancamentoTitle_produtoIdProduto}"/>
-                        <h:outputText value="#{bundle.ViewLancamentoLabel_quantidadeId}"/>
-                        <h:outputText value="#{lancamentoController.selected.quantidadeId}" title="#{bundle.ViewLancamentoTitle_quantidadeId}"/>
-                    </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="LancamentoViewDialog.hide()"/>
-                </h:panelGroup>
-            </h:form>
-        </p:dialog>
+        <p:dialog header="Mesa" widgetVar="MesaViewDialog" modal="true"
+                          resizable="false" appendTo="@(body)" >              
+                   
+                    <h:form id="MesaViewForm">
+                        <h:panelGroup id="display">
+                            <p:outputPanel  id="MesaViewForm" style="text-align:center;">
+                                <p:dataTable id="datalist" value="#{mesaController.selected.lancamentoList}" var="lanc"
+                                 selectionMode="single" 
+                                 rowKey="#{lanc.idLancamento}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
 
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ViewProdutoLabel_produto}"/>
+                            </f:facet>
+                            <h:outputText value="#{lanc.produtoIdProduto.produto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ViewQuantidadeLabel_quantidade}"/>
+                            </f:facet>
+                            <h:outputText value="#{lanc.quantidadeId.quantidade}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ValorUnitario}"/>
+                            </f:facet>
+                            <h:outputText class="valor" value="#{lanc.produtoIdProduto.valorProduto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ValorTotalDoProduto}"/>
+                            </f:facet>
+                            <h:outputText value="#{lanc.produtoIdProduto.valorProduto}"/>
+                            <h:outputText id="resultado" value="Total: "/>
+                        </p:column>
+                       
+                                    
+                    </p:dataTable>
+                                    
+                                
+                                
+                            </p:outputPanel>
+                            
+                            <p:commandButton value="#{bundle.Close}" onclick="soma()"/>
+                        </h:panelGroup>
+            </h:form>
+                    
+                    
+                    
+                    
+                </p:dialog>                        
     </ui:composition>
 </html>

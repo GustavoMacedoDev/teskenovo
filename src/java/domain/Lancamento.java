@@ -53,6 +53,9 @@ public class Lancamento implements Serializable {
     @JoinColumn(name = "quantidade_id", referencedColumnName = "id")
     @ManyToOne
     private Quantidade quantidadeId;
+    
+    @Column(name = "valor_total_lancamento", precision = 10, scale = 2)
+    private Double valorTotalLancamento;
 
     public Lancamento() {
     }
@@ -122,5 +125,14 @@ public class Lancamento implements Serializable {
                 + " Valor: " + produtoIdProduto.getValorProduto()
                 + " Quantidade: " + quantidadeId.getQuantidade();
     }
+
+    public Double getValorTotalLancamento() {
+        return valorTotalLancamento;
+    }
+
+    public void setValorTotalLancamento(Double valorTotalLancamento) {
+        this.valorTotalLancamento = valorTotalLancamento;
+    }
+    
     
 }

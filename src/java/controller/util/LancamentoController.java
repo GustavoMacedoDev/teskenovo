@@ -89,9 +89,10 @@ public class LancamentoController implements Serializable {
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
+            
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    lancamentoFacade.create(selected);
                 } else {
                     getFacade().remove(selected);
                 }

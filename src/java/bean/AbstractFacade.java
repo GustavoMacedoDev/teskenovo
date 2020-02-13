@@ -5,6 +5,7 @@
  */
 package bean;
 
+import domain.Lancamento;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -15,6 +16,8 @@ import javax.persistence.EntityManager;
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
+    private LancamentoFacade lancamentoFacade;
+    private Lancamento lancamento;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -22,9 +25,14 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
-        getEntityManager().persist(entity);
-    }
+   /* public void create(T entity) {
+        lancamento = (Lancamento) entity;
+        if(entity == Lancamento.class) {
+            lancamentoFacade.create(lancamento);
+        } 
+        
+       
+    }*/
 
     public void edit(T entity) {
         getEntityManager().merge(entity);

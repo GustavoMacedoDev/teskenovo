@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="MesaListForm">
                 <p:panel header="#{bundle.ListMesaTitle}">
-                    <p:dataTable id="datalist" value="#{mesaController.items}" var="item"
+                <p:dataTable id="datalist" value="#{mesaController.items}" var="item"
                                  selectionMode="single" selection="#{mesaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.mesaId}"
@@ -24,12 +24,9 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-                        <p:ajax listener="#{mesaController.onRowSelect}" 
-                                event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowSelect"   update="viewButton"/>
                         <p:ajax event="rowUnselect" update="viewButton"/>
 
-                        <h1>#{item.mesaId}</h1>
-                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMesaTitle_mesaId}"/>
@@ -49,10 +46,10 @@
                             <h:outputText value="#{item.statusMesa}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="viewButton"   icon="ui-icon-search"
+                            <p:commandButton id="viewButton"
+                                             icon="ui-icon-search"
                                              value="#{bundle.View}"
-                                             
-                                             update=":MesaViewForm"
+                                             update=":MesaViewForm" 
                                              oncomplete="PF('MesaViewDialog').show()"
                                              disabled="#{empty mesaController.selected}"/>
                         </f:facet>

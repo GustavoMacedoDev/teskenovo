@@ -12,8 +12,6 @@
             <h:form id="MesaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateMesaLabel_mesaId}" for="mesaId" />
-                        <p:inputText id="mesaId" value="#{mesaController.selected.mesaId}" title="#{bundle.CreateMesaTitle_mesaId}" required="true" requiredMessage="#{bundle.CreateMesaRequiredMessage_mesaId}"/>
                         <p:outputLabel value="#{bundle.CreateMesaLabel_numeroMesa}" for="numeroMesa" />
                         <p:inputText id="numeroMesa" value="#{mesaController.selected.numeroMesa}" title="#{bundle.CreateMesaTitle_numeroMesa}" />
                         <p:outputLabel value="#{bundle.CreateMesaLabel_statusMesa}" for="statusMesa" />
