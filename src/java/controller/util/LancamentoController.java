@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import reports.Relatorio;
 
 @Named("lancamentoController")
 @SessionScoped
@@ -167,5 +168,11 @@ public class LancamentoController implements Serializable {
         }
 
     }
+    
+    public void gerarRelatorioAction() {
+        Relatorio relatorio = new Relatorio();
+        relatorio.getRelatorio();
+    }
+
     
 }
