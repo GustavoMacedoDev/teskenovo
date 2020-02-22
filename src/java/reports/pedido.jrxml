@@ -3,7 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedido" pageWidth="283" pageHeight="566" columnWidth="243" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
 	<property name="template.type" value="columnar"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Teske"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pedidos"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
@@ -24,68 +24,60 @@
 		</conditionalStyle>
 	</style>
 	<queryString language="SQL">
-		<![CDATA[SELECT 
-  mesa.numero_mesa, produto.produto, produto.valor_produto, 
-  lancamento.id_lancamento, quantidade.quantidade
-FROM 
-  public.lancamento, 
-  public.produto, 
-  public.mesa, 
-  public.quantidade
-WHERE 
-  lancamento.mesa_mesa_id = mesa.mesa_id AND
-  lancamento.produto_id_produto = produto.id_produto AND
-  lancamento.quantidade_id = quantidade.id AND
-  mesa.numero_mesa = '1']]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="numero_mesa" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="numero_mesa"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="mesa"/>
+	<field name="quantidadeId" class="br.com.macedo.sistemas.domain.Quantidade">
+		<fieldDescription><![CDATA[quantidadeId]]></fieldDescription>
 	</field>
-	<field name="produto" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="produto"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	<field name="valorTotalLancamento" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorTotalLancamento]]></fieldDescription>
 	</field>
-	<field name="valor_produto" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="valor_produto"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	<field name="mesaMesaId" class="br.com.macedo.sistemas.domain.Mesa">
+		<fieldDescription><![CDATA[mesaMesaId]]></fieldDescription>
 	</field>
-	<field name="id_lancamento" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.label" value="id_lancamento"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="lancamento"/>
+	<field name="idLancamento" class="java.lang.Long">
+		<fieldDescription><![CDATA[idLancamento]]></fieldDescription>
 	</field>
-	<field name="quantidade" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="quantidade"/>
+	<field name="produtoIdProduto" class="br.com.macedo.sistemas.domain.Produto">
+		<fieldDescription><![CDATA[produtoIdProduto]]></fieldDescription>
+	</field>
+	<field name="mesaMesaId.numeroMesa" class="java.lang.String">
+		<fieldDescription><![CDATA[numero_mesa]]></fieldDescription>
+	</field>
+	<field name="produtoIdProduto.produto" class="java.lang.String">
+		<fieldDescription><![CDATA[produto]]></fieldDescription>
+	</field>
+	<field name="quantidadeId.quantidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[quantidade]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="82" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="14" width="120" height="20" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
+				<reportElement style="Title" x="0" y="0" width="120" height="20" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TESKE LANCHES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="150" y="14" width="40" height="20" forecolor="#000000" uuid="fcbc31d9-31a3-46ed-a737-fc72848f1b8e"/>
+				<reportElement style="SubTitle" x="119" y="0" width="40" height="20" forecolor="#000000" uuid="fcbc31d9-31a3-46ed-a737-fc72848f1b8e"/>
 				<textElement>
 					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mesa]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="190" y="14" width="50" height="21" uuid="c694da7c-15bb-4fa4-ad62-93b5e2314840"/>
+				<reportElement positionType="FixRelativeToBottom" x="160" y="0" width="50" height="21" uuid="c694da7c-15bb-4fa4-ad62-93b5e2314840"/>
 				<textElement textAlignment="Right">
 					<font size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{numero_mesa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mesaMesaId.numeroMesa}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="50" width="240" height="30" uuid="ac8662d6-7dd3-411e-b902-0796bcdaccf3"/>
+				<reportElement x="1" y="22" width="240" height="30" uuid="ac8662d6-7dd3-411e-b902-0796bcdaccf3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -105,20 +97,20 @@ WHERE
 				<reportElement positionType="FixRelativeToBottom" x="0" y="60" width="248" height="1" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
 			</line>
 			<staticText>
-				<reportElement x="2" y="0" width="38" height="20" uuid="73ce9afa-e368-4948-93d1-6b79bdd47351"/>
+				<reportElement x="0" y="0" width="38" height="20" uuid="73ce9afa-e368-4948-93d1-6b79bdd47351"/>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="40" y="0" width="200" height="20" uuid="61a2472a-0e61-400f-b974-5eaf8f79f84f"/>
-				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+				<reportElement positionType="FixRelativeToBottom" x="38" y="0" width="202" height="40" uuid="61a2472a-0e61-400f-b974-5eaf8f79f84f"/>
+				<textFieldExpression><![CDATA[$F{produtoIdProduto.produto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="2" y="21" width="58" height="20" uuid="275ad00f-3550-4696-9c8f-f68e8bb5044c"/>
+				<reportElement x="0" y="40" width="58" height="20" uuid="275ad00f-3550-4696-9c8f-f68e8bb5044c"/>
 				<text><![CDATA[Quantidade:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="60" y="21" width="180" height="20" uuid="fe38f26b-d05e-4219-b324-4068b4290b62"/>
-				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+				<reportElement positionType="FixRelativeToBottom" x="58" y="40" width="180" height="20" uuid="fe38f26b-d05e-4219-b324-4068b4290b62"/>
+				<textFieldExpression><![CDATA[$F{quantidadeId.quantidade}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

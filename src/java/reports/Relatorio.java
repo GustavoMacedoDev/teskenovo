@@ -1,6 +1,9 @@
 
 package reports;
 
+import bean.LancamentoFacade;
+import br.com.devmedia.curso.util.JpaUtil;
+import domain.Lancamento;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,10 +11,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -30,7 +36,7 @@ public class Relatorio {
     private ByteArrayOutputStream baos;
     private InputStream stream;
     private Connection con;
-
+    
     public Relatorio() {
         this.context = FacesContext.getCurrentInstance();
         this.response = (HttpServletResponse) context.getExternalContext().getResponse();
@@ -66,6 +72,21 @@ public class Relatorio {
             Logger.getLogger(Relatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
+    
+    public static List<Lancamento> getLancamentos() {
+        EntityManager manager = null;
+		try {
+			manager = JpaUtil.getEntityManager();
+			
+			return manager.createQuery("from Lancamento l", Lancamento.class).getResultList();
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		return null;
+	}
     
      public Connection getConexao(){        
         try {            
