@@ -46,20 +46,23 @@
                             </f:facet>
                             <h:outputText value="#{lanc.valorTotalLancamento}"/>
                         </p:column>
-                       
-                                    
+                                  
                     </p:dataTable>
-                                    
                                 
-                                
-                            </p:outputPanel>
-                            
-                            <p:commandButton value="#{bundle.Close}" onclick="soma()"/>
+                </p:outputPanel>
+                            <p:commandButton value="Somar" onclick="somar()"/>
+                            <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
                         </h:panelGroup>
+                        
             </h:form>
-                    
-                    
-                    
+            <br/>
+            <h:form id="resulta">
+                <h:outputText value="Valor Total da Mesa"/>
+                <br/>
+                <h:outputText id="resultado" />
+                <p:commandButton id="fecha" />
+
+            </h:form>        
                     
                 </p:dialog>                        
     </ui:composition>
