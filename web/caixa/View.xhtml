@@ -59,11 +59,19 @@
             <h:form id="resulta">
                 <h:outputText value="Valor Total da Mesa"/>
                 <br/>
-                <h:outputText id="resultado" />
-                <p:commandButton id="fecha" />
+                <h:outputText id="resultado" class="text-valor"/>
+                <br/>
+                
+                <p:commandButton id="viewButton"
+                                             icon="ui-icon-search"
+                                             value="Fechar Mesa"
+                                             update=":MesaViewForm" 
+                                             oncomplete="PF('FechaMesaDialog').show()"
+                                             disabled="#{empty mesaController.selected}"/>
 
             </h:form>        
                     
-                </p:dialog>                        
+                </p:dialog>  
+        <ui:include src="fecha_mesa.xhtml"/>
     </ui:composition>
 </html>
