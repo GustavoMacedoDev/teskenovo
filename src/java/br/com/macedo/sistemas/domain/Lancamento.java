@@ -59,6 +59,11 @@ public class Lancamento implements Serializable {
     @ManyToOne
     private Quantidade quantidadeId;
     
+    @Column
+    private int impresso;
+    
+    @Column
+    private String observacao;
 
     public Lancamento() {
     }
@@ -137,4 +142,22 @@ public class Lancamento implements Serializable {
         this.valorTotalLancamento = valorTotalLancamento;
     }
 
+    public int getImpresso() {
+        return impresso;
+    }
+
+    public void setImpresso(int impresso) {
+        this.impresso = impresso;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    
+    
 }

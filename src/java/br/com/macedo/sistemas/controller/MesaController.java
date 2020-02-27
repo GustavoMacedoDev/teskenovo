@@ -45,8 +45,6 @@ public class MesaController implements Serializable {
         if(selected != null) {
         
             selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
-            
-            
          
             return selected;
         }
@@ -112,7 +110,7 @@ public class MesaController implements Serializable {
         
         System.out.println("Id passado" + id);
         
-        lancamentosByMesa = lancamentoFacade.getByMesa(id);
+        lancamentosByMesa = lancamentoFacade.getLancamentosMesa(id);
         
 //        lancamentosByMesa.forEach((lancs) -> {
 //            double totalMesa;

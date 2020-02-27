@@ -5,35 +5,24 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/adicional/List" value="Show All Adicional Items"/>
-        <br />
-        <h:link outcome="/categoria/List" value="Show All Categoria Items"/>
-        <br />
-        <h:link outcome="/detalheAdicional/List" value="Show All DetalheAdicional Items"/>
-        <br />
-        <h:link outcome="/itensPedido/List" value="Show All ItensPedido Items"/>
-        <br />
-        <h:link outcome="/lancamento/List" value="Show All Lancamento Items"/>
-        <br />
-        <h:link outcome="/mesa/List" value="Show All Mesa Items"/>
-        <br />
-        <h:link outcome="/pedido/List" value="Show All Pedido Items"/>
-        <br />
-        <h:link outcome="/produto/List" value="Show All Produto Items"/>
-        <br />
-        <h:link outcome="/quantidade/List" value="Show All Quantidade Items"/>
-        <br />
-        <h:link outcome="/caixa/List" value="Caixa"/>
-        <br />
-        <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-        <br />
-        <h:link outcome="/relatorios/index.jsp" value="Relatorios"/>
+        <div >
+            <h:button class="buttonsIndex" outcome="/adicional/List" value="Adicional"/>
+            <h:button class="buttonsIndex" outcome="/categoria/List" value="Categoria"/>
+            <h:button class="buttonsIndex" outcome="/detalheAdicional/List" value="DetalheAdicional"/>
+            <h:button class="buttonsIndex" outcome="/itensPedido/List" value="ItensPedido "/>
+            <h:button class="buttonsIndex" outcome="/lancamento/List" value="Lancamento"/>
+            <h:button class="buttonsIndex" outcome="/mesa/List" value="Mesa "/>
+            <h:button class="buttonsIndex" outcome="/pedido/List" value="Pedido"/>
+            <h:button class="buttonsIndex" outcome="/produto/List" value="Produto "/>
+            <h:button class="buttonsIndex" outcome="/quantidade/List" value="Quantidade "/>
+            <h:button class="buttonsIndex" outcome="/caixa/List" value="Caixa"/>
+            <h:button class="buttonsIndex" outcome="/cliente/List" value="Cliente"/>
+            <h:button class="buttonsIndex" outcome="/relatorios/index.jsp" value="Relatorios"/>
+        </div>
+        
     </h:body>
 
 

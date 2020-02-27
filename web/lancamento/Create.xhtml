@@ -30,6 +30,10 @@
                                            var="quantidadeIdItem"
                                            itemValue="#{quantidadeIdItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="Observação" for="observacao" />
+                        <p:inputText id="observacao" value="#{lancamentoController.selected.observacao}" title="Observação" />
+                        
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{lancamentoController.create}" value="#{bundle.Save}" update="display,:LancamentoListForm:datalist,:growl" oncomplete="handleSubmit(args,'LancamentoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="LancamentoCreateDialog.hide()"/>

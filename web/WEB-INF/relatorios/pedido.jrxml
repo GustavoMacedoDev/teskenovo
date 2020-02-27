@@ -3,7 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedido" pageWidth="283" pageHeight="566" columnWidth="243" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
 	<property name="template.type" value="columnar"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Jpa_DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
@@ -29,11 +29,23 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="observacao" class="java.lang.String">
+		<fieldDescription><![CDATA[observacao]]></fieldDescription>
+	</field>
 	<field name="quantidadeId" class="br.com.macedo.sistemas.domain.Quantidade">
 		<fieldDescription><![CDATA[quantidadeId]]></fieldDescription>
 	</field>
+	<field name="valorTotalLancamento" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorTotalLancamento]]></fieldDescription>
+	</field>
 	<field name="mesaMesaId" class="br.com.macedo.sistemas.domain.Mesa">
 		<fieldDescription><![CDATA[mesaMesaId]]></fieldDescription>
+	</field>
+	<field name="impresso" class="java.lang.Integer">
+		<fieldDescription><![CDATA[impresso]]></fieldDescription>
+	</field>
+	<field name="idLancamento" class="java.lang.Long">
+		<fieldDescription><![CDATA[idLancamento]]></fieldDescription>
 	</field>
 	<field name="produtoIdProduto" class="br.com.macedo.sistemas.domain.Produto">
 		<fieldDescription><![CDATA[produtoIdProduto]]></fieldDescription>
@@ -42,7 +54,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="60" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="0" y="0" width="120" height="20" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
 				<textElement textAlignment="Center">
@@ -60,12 +72,12 @@
 			<textField>
 				<reportElement positionType="FixRelativeToBottom" x="160" y="0" width="50" height="21" uuid="c694da7c-15bb-4fa4-ad62-93b5e2314840"/>
 				<textElement textAlignment="Right">
-					<font size="13"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mesaMesaId}.getNumeroMesa()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="22" width="240" height="30" uuid="ac8662d6-7dd3-411e-b902-0796bcdaccf3"/>
+				<reportElement x="1" y="22" width="240" height="18" uuid="ac8662d6-7dd3-411e-b902-0796bcdaccf3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -80,25 +92,51 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="62" splitType="Stretch">
+		<band height="91" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="60" width="248" height="1" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="90" width="248" height="1" uuid="5e41185f-9c90-45ca-839b-e28b308c1430"/>
 			</line>
 			<staticText>
 				<reportElement x="0" y="0" width="38" height="20" uuid="73ce9afa-e368-4948-93d1-6b79bdd47351"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nome:]]></text>
 			</staticText>
 			<textField>
 				<reportElement positionType="FixRelativeToBottom" x="38" y="0" width="202" height="40" uuid="61a2472a-0e61-400f-b974-5eaf8f79f84f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{produtoIdProduto}.getProduto()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="40" width="58" height="20" uuid="275ad00f-3550-4696-9c8f-f68e8bb5044c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Quantidade:]]></text>
 			</staticText>
 			<textField>
 				<reportElement positionType="FixRelativeToBottom" x="58" y="40" width="180" height="20" uuid="fe38f26b-d05e-4219-b324-4068b4290b62"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{quantidadeId}.getQuantidade()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="60" width="58" height="20" uuid="b1c1ef7f-37f9-4fcd-889f-a09debf73e07"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="58" y="60" width="180" height="20" uuid="d0aee1af-1de6-4914-afa2-d23ed5e20976"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

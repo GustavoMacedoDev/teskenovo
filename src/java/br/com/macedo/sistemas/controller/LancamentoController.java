@@ -20,16 +20,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Named("lancamentoController")
 @SessionScoped
 public class LancamentoController implements Serializable {
 
     @EJB
-    private br.com.macedo.sistemas.bean.LancamentoFacade lancamentoFacade;
+    private LancamentoFacade lancamentoFacade;
     private List<Lancamento> items = null;
     private Lancamento selected;
     
@@ -175,9 +172,17 @@ public class LancamentoController implements Serializable {
     
     public void relatorio(){
 		HashMap parametros = new HashMap();
-                System.out.println("rela" + items);
-                
 		UtilRelatorios.imprimeRelatorio("pedido", parametros, items);
+	}
+    
+    public void relatorioPorMesa(){
+		HashMap parametros = new HashMap();
+                List<Lancamento> pedidos = null;
+                
+                pedidos = lancamentoFacade.getByMesa(selected.getMesaMesaId().getMesaId());
+		UtilRelatorios.imprimeRelatorioPorMesa("pedido", parametros, pedidos);
+                
+                lancamentoFacade.atualizaImpressao(pedidos);
 	}
     
 }
