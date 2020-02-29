@@ -51,7 +51,10 @@ public class ProdutoController implements Serializable {
 
     public Produto prepareCreate() {
         selected = new Produto();
+        
         initializeEmbeddableKey();
+               
+
         return selected;
     }
 
@@ -86,8 +89,11 @@ public class ProdutoController implements Serializable {
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
+            System.out.println("teste" + selected.getIdProduto());
             try {
                 if (persistAction != PersistAction.DELETE) {
+                    System.out.println("select PRODUTO" + selected.getIdProduto());
+                    System.out.println("select PRODUTO" + selected.getCategoriaId());
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);

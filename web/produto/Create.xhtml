@@ -16,12 +16,14 @@
                         <p:inputText id="produto" value="#{produtoController.selected.produto}" title="#{bundle.CreateProdutoTitle_produto}" />
                         <p:outputLabel value="#{bundle.CreateProdutoLabel_valorProduto}" for="valorProduto" />
                         <p:inputText id="valorProduto" value="#{produtoController.selected.valorProduto}" title="#{bundle.CreateProdutoTitle_valorProduto}" />
+                        
                         <p:outputLabel value="#{bundle.CreateProdutoLabel_categoriaId}" for="categoriaId" />
                         <p:selectOneMenu id="categoriaId" value="#{produtoController.selected.categoriaId}" >
                             <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"
                                            var="categoriaIdItem"
                                            itemValue="#{categoriaIdItem}"/>
                         </p:selectOneMenu>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{produtoController.create}" value="#{bundle.Save}" update="display,:ProdutoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProdutoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProdutoCreateDialog.hide()"/>

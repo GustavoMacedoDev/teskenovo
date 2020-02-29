@@ -1,9 +1,9 @@
 package br.com.macedo.sistemas.controller;
 
-import br.com.macedo.sistemas.domain.Mesa;
+import br.com.macedo.sistemas.domain.FormaPagamento;
 import br.com.macedo.sistemas.controller.util.JsfUtil;
 import br.com.macedo.sistemas.controller.util.JsfUtil.PersistAction;
-import br.com.macedo.sistemas.bean.MesaFacade;
+import br.com.macedo.sistemas.bean.FormaPagamentoFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("mesaController")
+@Named("formaPagamentoController")
 @SessionScoped
-public class MesaController implements Serializable {
+public class FormaPagamentoController implements Serializable {
 
     @EJB
-    private br.com.macedo.sistemas.bean.MesaFacade ejbFacade;
-    private List<Mesa> items = null;
-    private Mesa selected;
+    private br.com.macedo.sistemas.bean.FormaPagamentoFacade ejbFacade;
+    private List<FormaPagamento> items = null;
+    private FormaPagamento selected;
 
-    public MesaController() {
+    public FormaPagamentoController() {
     }
 
-    public Mesa getSelected() {
+    public FormaPagamento getSelected() {
         return selected;
     }
 
-    public void setSelected(Mesa selected) {
+    public void setSelected(FormaPagamento selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class MesaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private MesaFacade getFacade() {
+    private FormaPagamentoFacade getFacade() {
         return ejbFacade;
     }
 
-    public Mesa prepareCreate() {
-        selected = new Mesa();
+    public FormaPagamento prepareCreate() {
+        selected = new FormaPagamento();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MesaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FormaPagamentoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MesaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FormaPagamentoUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MesaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FormaPagamentoDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Mesa> getItems() {
+    public List<FormaPagamento> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,38 +109,38 @@ public class MesaController implements Serializable {
         }
     }
 
-    public Mesa getMesa(java.lang.Long id) {
+    public FormaPagamento getFormaPagamento(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Mesa> getItemsAvailableSelectMany() {
+    public List<FormaPagamento> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Mesa> getItemsAvailableSelectOne() {
+    public List<FormaPagamento> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Mesa.class)
-    public static class MesaControllerConverter implements Converter {
+    @FacesConverter(forClass = FormaPagamento.class)
+    public static class FormaPagamentoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MesaController controller = (MesaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "mesaController");
-            return controller.getMesa(getKey(value));
+            FormaPagamentoController controller = (FormaPagamentoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "formaPagamentoController");
+            return controller.getFormaPagamento(getKey(value));
         }
 
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Long value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -151,11 +151,11 @@ public class MesaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Mesa) {
-                Mesa o = (Mesa) object;
-                return getStringKey(o.getMesaId());
+            if (object instanceof FormaPagamento) {
+                FormaPagamento o = (FormaPagamento) object;
+                return getStringKey(o.getIdFormaPagamento());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Mesa.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FormaPagamento.class.getName()});
                 return null;
             }
         }

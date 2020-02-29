@@ -18,6 +18,10 @@
                         <p:inputText id="numeroMesa" value="#{mesaController.selected.numeroMesa}" title="#{bundle.EditMesaTitle_numeroMesa}" />
                         <p:outputLabel value="#{bundle.EditMesaLabel_statusMesa}" for="statusMesa" />
                         <p:inputText id="statusMesa" value="#{mesaController.selected.statusMesa}" title="#{bundle.EditMesaTitle_statusMesa}" />
+                        <p:outputLabel value="#{bundle.EditMesaLabel_lancamentoList}" for="lancamentoList" />
+                        <p:inputText id="lancamentoList" value="#{mesaController.selected.lancamentoList}" title="#{bundle.EditMesaTitle_lancamentoList}" />
+                        <p:outputLabel value="#{bundle.EditMesaLabel_totalMesa}" for="totalMesa" />
+                        <p:inputText id="totalMesa" value="#{mesaController.selected.totalMesa}" title="#{bundle.EditMesaTitle_totalMesa}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{mesaController.update}" value="#{bundle.Save}" update="display,:MesaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MesaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="MesaEditDialog.hide()"/>

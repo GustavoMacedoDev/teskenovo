@@ -12,10 +12,16 @@
             <h:form id="MesaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{mesaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_mesaId}" for="mesaId" />
+                        <p:inputText id="mesaId" value="#{mesaController.selected.mesaId}" title="#{bundle.CreateMesaTitle_mesaId}" required="true" requiredMessage="#{bundle.CreateMesaRequiredMessage_mesaId}"/>
                         <p:outputLabel value="#{bundle.CreateMesaLabel_numeroMesa}" for="numeroMesa" />
                         <p:inputText id="numeroMesa" value="#{mesaController.selected.numeroMesa}" title="#{bundle.CreateMesaTitle_numeroMesa}" />
                         <p:outputLabel value="#{bundle.CreateMesaLabel_statusMesa}" for="statusMesa" />
                         <p:inputText id="statusMesa" value="#{mesaController.selected.statusMesa}" title="#{bundle.CreateMesaTitle_statusMesa}" />
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_lancamentoList}" for="lancamentoList" />
+                        <p:inputText id="lancamentoList" value="#{mesaController.selected.lancamentoList}" title="#{bundle.CreateMesaTitle_lancamentoList}" />
+                        <p:outputLabel value="#{bundle.CreateMesaLabel_totalMesa}" for="totalMesa" />
+                        <p:inputText id="totalMesa" value="#{mesaController.selected.totalMesa}" title="#{bundle.CreateMesaTitle_totalMesa}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{mesaController.create}" value="#{bundle.Save}" update="display,:MesaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MesaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="MesaCreateDialog.hide()"/>

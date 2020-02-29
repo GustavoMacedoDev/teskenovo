@@ -6,8 +6,10 @@
 package br.com.macedo.sistemas.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,6 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Mesa.findByNumeroMesa", query = "SELECT m FROM Mesa m WHERE m.numeroMesa = :numeroMesa"),
     @NamedQuery(name = "Mesa.findByStatusMesa", query = "SELECT m FROM Mesa m WHERE m.statusMesa = :statusMesa")})
 public class Mesa implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mesaMesaId")
+    private Collection<Pagamento> pagamentoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -138,6 +143,15 @@ public class Mesa implements Serializable {
 
     public void setTotalMesa(double totalMesa) {
         this.totalMesa = totalMesa;
+    }
+
+    @XmlTransient
+    public Collection<Pagamento> getPagamentoCollection() {
+        return pagamentoCollection;
+    }
+
+    public void setPagamentoCollection(Collection<Pagamento> pagamentoCollection) {
+        this.pagamentoCollection = pagamentoCollection;
     }
     
    

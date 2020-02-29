@@ -11,9 +11,9 @@
         <p:dialog header="Mesa" widgetVar="MesaViewDialog" modal="true"
                           resizable="false" appendTo="@(body)" >              
                    
-                    <h:form id="MesaViewForm">
+                    <h:form id="FechaMesaViewForm">
                         <h:panelGroup id="display">
-                            <p:outputPanel  id="MesaViewForm" style="text-align:center;">
+                            <p:outputPanel  id="FechaMesaViewForm" style="text-align:center;">
                                 <p:dataTable id="datalist" value="#{mesaController.selected.lancamentoList}" var="lanc"
                                  selectionMode="single" 
                                  rowKey="#{lanc.idLancamento}"
@@ -62,12 +62,12 @@
                 <h:outputText id="resultado" class="text-valor"/>
                 <br/>
                 
-                <p:commandButton id="viewButton"
-                                             icon="ui-icon-search"
-                                             value="Fechar Mesa"
-                                             update=":MesaViewForm" 
-                                             oncomplete="PF('FechaMesaDialog').show()"
-                                             disabled="#{empty mesaController.selected}"/>
+                <p:commandButton id="createButton"
+                                 icon="ui-icon-plus"
+                                 value="Fechar Mesa"
+                                 actionListener="#{pagamentoController.prepareCreate}"
+                                 update="fechaMesaForm"
+                                 oncomplete="PF('FechaMesaDialog').show()"/>
 
             </h:form>        
                     

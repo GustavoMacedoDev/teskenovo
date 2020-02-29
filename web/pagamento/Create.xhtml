@@ -7,10 +7,13 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="FechaMesaCreateDlg" widgetVar="FechaMesaDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagamentoTitle}">
-            <h:form id="fechaMesaForm">
+
+        <p:dialog id="PagamentoCreateDlg" widgetVar="PagamentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagamentoTitle}">
+            <h:form id="PagamentoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pagamentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePagamentoLabel_idPagamento}" for="idPagamento" />
+                        <p:inputText id="idPagamento" value="#{pagamentoController.selected.idPagamento}" title="#{bundle.CreatePagamentoTitle_idPagamento}" required="true" requiredMessage="#{bundle.CreatePagamentoRequiredMessage_idPagamento}"/>
                         <p:outputLabel value="#{bundle.CreatePagamentoLabel_valorPago}" for="valorPago" />
                         <p:inputText id="valorPago" value="#{pagamentoController.selected.valorPago}" title="#{bundle.CreatePagamentoTitle_valorPago}" required="true" requiredMessage="#{bundle.CreatePagamentoRequiredMessage_valorPago}"/>
                         <p:outputLabel value="#{bundle.CreatePagamentoLabel_formaPagamentoId}" for="formaPagamentoId" />
@@ -26,11 +29,11 @@
                                            itemValue="#{mesaMesaIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pagamentoController.create}" value="#{bundle.Save}" update="display,:FechaMesaViewForm:datalist,:growl" oncomplete="handleSubmit(args,'FechaMesaDialog');"/>
+                    <p:commandButton actionListener="#{pagamentoController.create}" value="#{bundle.Save}" update="display,:PagamentoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagamentoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PagamentoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-                            
+
     </ui:composition>
 </html>
