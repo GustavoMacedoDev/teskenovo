@@ -49,7 +49,7 @@ public class Mesa implements Serializable {
     @Column(name = "mesa_id")
     private Long mesaId;
     @Size(max = 255)
-    @Column(name = "numero_mesa")
+    @Column(name = "numero_mesa", nullable = false)
     private String numeroMesa;
     @Column(name = "status_mesa")
     private Integer statusMesa;
@@ -60,9 +60,13 @@ public class Mesa implements Serializable {
     @OneToMany(mappedBy = "mesaMesaId")
     private List<Pedido> pedidoList;
     
-    @Transient
-    private double totalMesa;
-
+    @Column(scale = 12, precision = 2, name = "valor_pago")
+    private Double valorPago;
+    
+    @Column(scale = 12, precision = 2, name = "valor_total")
+    private Double valorTotal;
+    
+    
     public Mesa() {
     }
 
@@ -94,7 +98,6 @@ public class Mesa implements Serializable {
         this.statusMesa = statusMesa;
     }
 
-    @XmlTransient
     public List<Lancamento> getLancamentoList() {
         return lancamentos;
     }
@@ -137,14 +140,7 @@ public class Mesa implements Serializable {
         return "" + numeroMesa;
     }
 
-    public double getTotalMesa() {
-        return totalMesa;
-    }
-
-    public void setTotalMesa(double totalMesa) {
-        this.totalMesa = totalMesa;
-    }
-
+   
     @XmlTransient
     public Collection<Pagamento> getPagamentoCollection() {
         return pagamentoCollection;
@@ -152,6 +148,22 @@ public class Mesa implements Serializable {
 
     public void setPagamentoCollection(Collection<Pagamento> pagamentoCollection) {
         this.pagamentoCollection = pagamentoCollection;
+    }
+
+    public Double getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(Double valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
    

@@ -39,24 +39,6 @@
                             </f:facet>
                             <h:outputText value="#{item.numeroMesa}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMesaTitle_statusMesa}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.statusMesa}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMesaTitle_lancamentoList}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lancamentoList}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMesaTitle_totalMesa}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.totalMesa}"/>
-                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{mesaController.prepareCreate}" update=":MesaCreateForm" oncomplete="PF('MesaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MesaViewForm" oncomplete="PF('MesaViewDialog').show()" disabled="#{empty mesaController.selected}"/>

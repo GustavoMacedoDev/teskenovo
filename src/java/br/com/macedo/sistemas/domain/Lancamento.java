@@ -36,10 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class Lancamento implements Serializable {
 
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_total_lancamento", nullable = false)
-    private double valorTotalLancamento;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -134,13 +130,7 @@ public class Lancamento implements Serializable {
                 + " Quantidade: " + quantidadeId.getQuantidade();
     }
 
-    public double getValorTotalLancamento() {
-        return valorTotalLancamento;
-    }
-
-    public void setValorTotalLancamento(double valorTotalLancamento) {
-        this.valorTotalLancamento = valorTotalLancamento;
-    }
+    
 
     public int getImpresso() {
         return impresso;

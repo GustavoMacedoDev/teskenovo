@@ -12,8 +12,6 @@
             <h:form id="QuantidadeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{quantidadeController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateQuantidadeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{quantidadeController.selected.id}" title="#{bundle.CreateQuantidadeTitle_id}" required="true" requiredMessage="#{bundle.CreateQuantidadeRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateQuantidadeLabel_quantidade}" for="quantidade" />
                         <p:inputText id="quantidade" value="#{quantidadeController.selected.quantidade}" title="#{bundle.CreateQuantidadeTitle_quantidade}" />
                     </p:panelGrid>

@@ -48,6 +48,7 @@ public class Produto implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_produto")
     private Long idProduto;
+    
     @Size(max = 255)
     @Column(name = "produto")
     private String produto;

@@ -1,9 +1,11 @@
 package br.com.macedo.sistemas.controller;
 
+import br.com.macedo.sistemas.bean.LancamentoFacade;
 import br.com.macedo.sistemas.domain.Mesa;
 import br.com.macedo.sistemas.controller.util.JsfUtil;
 import br.com.macedo.sistemas.controller.util.JsfUtil.PersistAction;
 import br.com.macedo.sistemas.bean.MesaFacade;
+import br.com.macedo.sistemas.domain.Lancamento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,15 +26,31 @@ import javax.faces.convert.FacesConverter;
 public class MesaController implements Serializable {
 
     @EJB
-    private br.com.macedo.sistemas.bean.MesaFacade ejbFacade;
+    private MesaFacade ejbFacade;
+    
+    @EJB
+    private LancamentoFacade lancamentoFacade;
+     
     private List<Mesa> items = null;
     private Mesa selected;
+    private List<Lancamento> lancamentosByMesa;
 
+    
+    
     public MesaController() {
     }
 
     public Mesa getSelected() {
-        return selected;
+        
+        if(selected != null) {
+        
+            selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
+            
+            return selected;
+        }
+        
+        
+       return new Mesa();
     }
 
     public void setSelected(Mesa selected) {
@@ -79,6 +97,22 @@ public class MesaController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+    
+    
+    public List<Lancamento> getLancamentosByMesa(Long id) {
+        
+        
+        lancamentosByMesa = lancamentoFacade.getByMesa(id);
+        
+//        lancamentosByMesa.forEach((lancs) -> {
+//            double totalMesa;
+//            totalMesa = lancs.getValorTotalLancamento();
+//            
+//            System.out.print(totalMesa);
+//        });
+        
+        return lancamentosByMesa;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

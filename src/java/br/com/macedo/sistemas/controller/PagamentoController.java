@@ -87,10 +87,9 @@ public class PagamentoController implements Serializable {
             try {
                 if (persistAction != PersistAction.DELETE) {
                     
-                    System.out.println("select pagamento " + selected.getIdPagamento());
-                    System.out.println("select pagamento " + selected.getFormaPagamentoId());
-                    System.out.println("select pagamento " + selected.getMesaMesaId());        
+                        
                     getFacade().edit(selected);
+                    subtraiValor(selected);
                 } else {
                     getFacade().remove(selected);
                 }
@@ -123,6 +122,10 @@ public class PagamentoController implements Serializable {
 
     public List<Pagamento> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public void subtraiValor(Pagamento selected) {
+        System.out.println("o que tem " + selected.getMesaMesaId());    
     }
 
     @FacesConverter(forClass = Pagamento.class)

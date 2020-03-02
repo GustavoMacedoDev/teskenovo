@@ -6,7 +6,9 @@
 package br.com.macedo.sistemas.bean;
 
 import br.com.macedo.sistemas.domain.Lancamento;
+import br.com.macedo.sistemas.domain.Mesa;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +21,9 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class LancamentoFacade extends AbstractFacade<Lancamento> {
+
+    @EJB
+    private MesaFacade mesaFacade;
 
     @PersistenceContext(unitName = "TeskePU")
     private EntityManager em;
@@ -45,7 +50,8 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         total = valorProduto * quantidade;
         
         
-        lancamento.setValorTotalLancamento(total);
+        
+        mesaFacade.insereValorMesa(lancamento.getMesaMesaId(), total);
         
         
         em.persist(lancamento);

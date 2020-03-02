@@ -21,7 +21,6 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ViewProdutoLabel_produto}"/>
@@ -38,13 +37,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ValorUnitario}"/>
                             </f:facet>
-                            <h:outputText class="valor" value="#{lanc.produtoIdProduto.valorProduto}"/>
+                            <h:outputText  value="#{lanc.produtoIdProduto.valorProduto}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ValorTotalDoProduto}"/>
                             </f:facet>
-                            <h:outputText value="#{lanc.valorTotalLancamento}"/>
+                            <h:outputText class="valor" value="#{lanc.valorTotalLancamento}"/>
                         </p:column>
                                   
                     </p:dataTable>

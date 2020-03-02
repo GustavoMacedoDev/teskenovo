@@ -12,8 +12,6 @@
             <h:form id="FormaPagamentoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{formaPagamentoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFormaPagamentoLabel_idFormaPagamento}" for="idFormaPagamento" />
-                        <p:inputText id="idFormaPagamento" value="#{formaPagamentoController.selected.idFormaPagamento}" title="#{bundle.CreateFormaPagamentoTitle_idFormaPagamento}" required="true" requiredMessage="#{bundle.CreateFormaPagamentoRequiredMessage_idFormaPagamento}"/>
                         <p:outputLabel value="#{bundle.CreateFormaPagamentoLabel_descFormaPagamento}" for="descFormaPagamento" />
                         <p:inputText id="descFormaPagamento" value="#{formaPagamentoController.selected.descFormaPagamento}" title="#{bundle.CreateFormaPagamentoTitle_descFormaPagamento}" required="true" requiredMessage="#{bundle.CreateFormaPagamentoRequiredMessage_descFormaPagamento}"/>
                     </p:panelGrid>

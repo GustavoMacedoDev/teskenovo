@@ -29,4 +29,15 @@ public class MesaFacade extends AbstractFacade<Mesa> {
         super(Mesa.class);
     }
     
+    public void insereValorMesa(Mesa mesa, Double valorLancado) {
+        System.out.println("mesaaa " + mesa);
+        double valorParcial = mesa.getValorTotal();
+        
+        double total = 0;
+        total = valorLancado + valorParcial;
+        mesa.setValorTotal(total);
+        
+        em.merge(mesa);
+    }
+    
 }
