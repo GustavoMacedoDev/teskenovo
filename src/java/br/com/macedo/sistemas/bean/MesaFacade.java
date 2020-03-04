@@ -30,8 +30,22 @@ public class MesaFacade extends AbstractFacade<Mesa> {
     }
     
     public void insereValorMesa(Mesa mesa, Double valorLancado) {
-        System.out.println("mesaaa " + mesa);
-        double valorParcial = mesa.getValorTotal();
+        System.out.println("mesaaa " + mesa.getValorTotal());
+        System.out.println("valor lancado " + valorLancado);
+        
+        Mesa mesaNova = valorTotalMesa(mesa);
+        
+        System.out.println("mesa nova" + mesaNova.getValorTotal());
+        
+        double valorParcial;
+        
+        if(mesaNova.getValorTotal() == null) {
+            valorParcial = 0;
+        } else {
+            valorParcial = mesaNova.getValorTotal();
+        }
+        
+        System.out.println("valor parcial " + valorParcial);
         
         double total = 0;
         total = valorLancado + valorParcial;
@@ -40,4 +54,8 @@ public class MesaFacade extends AbstractFacade<Mesa> {
         em.merge(mesa);
     }
     
+    public Mesa valorTotalMesa(Mesa mesa) {
+        return em.find(Mesa.class, mesa.getMesaId());
+        
+    }
 }

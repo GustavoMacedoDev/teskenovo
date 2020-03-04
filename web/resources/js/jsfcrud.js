@@ -3,10 +3,7 @@ function somar() {
     console.log('opa');
     
     var teste = null;
-    teste = document.getElementsByClassName('valor');
-
-    console.log(teste);
-    console.log('eae');
+    teste = document.getElementsByClassName('valor-total-lancamento');
 
     var total = 0;
     for (let i = 0; i < teste.length; i++) {

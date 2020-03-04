@@ -6,7 +6,6 @@
 package br.com.macedo.sistemas.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -60,6 +59,12 @@ public class Lancamento implements Serializable {
     
     @Column
     private String observacao;
+    
+    @Column(name = "valor_total_lancamento")
+    private double valorTotalLancamento;
+    
+    @Column(name = "valor_pago")
+    private double valorPago;
 
     public Lancamento() {
     }
@@ -148,6 +153,13 @@ public class Lancamento implements Serializable {
         this.observacao = observacao;
     }
 
-    
+    public double getValorTotalLancamento() {
+        return valorTotalLancamento;
+    }
+
+    public void setValorTotalLancamento(double valorTotalLancamento) {
+        this.valorTotalLancamento = valorTotalLancamento;
+    }
+
     
 }

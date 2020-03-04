@@ -39,6 +39,7 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         super(Lancamento.class);
     }
 
+    @Override
     public void create(Lancamento lancamento) {
         
         double total;
@@ -49,10 +50,9 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         
         total = valorProduto * quantidade;
         
-        
+        lancamento.setValorTotalLancamento(total);
         
         mesaFacade.insereValorMesa(lancamento.getMesaMesaId(), total);
-        
         
         em.persist(lancamento);
         

@@ -14,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -34,8 +34,6 @@ public class MesaController implements Serializable {
     private List<Mesa> items = null;
     private Mesa selected;
     private List<Lancamento> lancamentosByMesa;
-
-    
     
     public MesaController() {
     }
@@ -45,6 +43,7 @@ public class MesaController implements Serializable {
         if(selected != null) {
         
             selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
+            
             
             return selected;
         }
@@ -103,15 +102,9 @@ public class MesaController implements Serializable {
     public List<Lancamento> getLancamentosByMesa(Long id) {
         
         
-        lancamentosByMesa = lancamentoFacade.getByMesa(id);
+        lancamentosByMesa = lancamentoFacade.getLancamentosMesa(id);
         
-//        lancamentosByMesa.forEach((lancs) -> {
-//            double totalMesa;
-//            totalMesa = lancs.getValorTotalLancamento();
-//            
-//            System.out.print(totalMesa);
-//        });
-        
+       
         return lancamentosByMesa;
     }
 
@@ -195,5 +188,7 @@ public class MesaController implements Serializable {
         }
 
     }
+    
+    
 
 }

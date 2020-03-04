@@ -31,7 +31,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ViewQuantidadeLabel_quantidade}"/>
                             </f:facet>
-                            <h:outputText value="#{lanc.quantidadeId.quantidade}"/>
+                            <h:outputText class="quantidade" value="#{lanc.quantidadeId.quantidade}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -43,23 +43,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ValorTotalDoProduto}"/>
                             </f:facet>
-                            <h:outputText class="valor" value="#{lanc.valorTotalLancamento}"/>
+                            <h:outputText class="valor-total-lancamento" value="#{lanc.valorTotalLancamento}"/>
                         </p:column>
-                                  
+                                    
                     </p:dataTable>
                                 
                 </p:outputPanel>
-                            <p:commandButton value="Somar" onclick="somar()"/>
                             <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
                         </h:panelGroup>
                         
             </h:form>
             <br/>
             <h:form id="resulta">
-                <h:outputText value="Valor Total da Mesa"/>
-                <br/>
-                <h:outputText id="resultado" class="text-valor"/>
-                <br/>
+                <h:outputText class="valor-total" value="Valor Total da Mesa"/>
+                        <br/>
+                        <p:commandButton value="Soma" onclick="somar()"/>
+                        <br/>
+                        <br/>
+                        <h:outputText id="resultado" class="valor-total" />
+                        <br/>
                 
                 <p:commandButton id="createButton"
                                  icon="ui-icon-plus"
