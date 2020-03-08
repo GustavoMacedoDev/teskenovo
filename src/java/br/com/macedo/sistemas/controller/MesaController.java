@@ -43,6 +43,9 @@ public class MesaController implements Serializable {
         if(selected != null) {
         
             selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
+            selected.setValorPago(valorPago(selected.getMesaId()));
+            
+            System.out.println("valor pago" + selected.getValorPago());
             
             
             return selected;
@@ -107,6 +110,17 @@ public class MesaController implements Serializable {
        
         return lancamentosByMesa;
     }
+    
+    public double valorPago(Long id) {
+        
+        double valorPago = 0.0;
+        
+        valorPago = ejbFacade.buscaValorPago(id);
+        
+        return valorPago;
+        
+    }
+            
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

@@ -18,9 +18,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.springframework.web.bind.annotation.RestController;
 
 @Named("adicionalController")
 @SessionScoped
+@RestController
 public class AdicionalController implements Serializable {
 
     @EJB

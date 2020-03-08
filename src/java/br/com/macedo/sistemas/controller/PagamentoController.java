@@ -1,9 +1,11 @@
 package br.com.macedo.sistemas.controller;
 
+import br.com.macedo.sistemas.bean.MesaFacade;
 import br.com.macedo.sistemas.domain.Pagamento;
 import br.com.macedo.sistemas.controller.util.JsfUtil;
 import br.com.macedo.sistemas.controller.util.JsfUtil.PersistAction;
 import br.com.macedo.sistemas.bean.PagamentoFacade;
+import br.com.macedo.sistemas.domain.Mesa;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +26,10 @@ import javax.faces.convert.FacesConverter;
 public class PagamentoController implements Serializable {
 
     @EJB
-    private br.com.macedo.sistemas.bean.PagamentoFacade ejbFacade;
+    private PagamentoFacade ejbFacade;
+    @EJB
+    private MesaFacade mesaFacade;
+    
     private List<Pagamento> items = null;
     private Pagamento selected;
 
@@ -48,6 +53,12 @@ public class PagamentoController implements Serializable {
     private PagamentoFacade getFacade() {
         return ejbFacade;
     }
+
+    public MesaFacade getMesaFacade() {
+        return mesaFacade;
+    }
+    
+    
 
     public Pagamento prepareCreate() {
         selected = new Pagamento();
@@ -92,6 +103,7 @@ public class PagamentoController implements Serializable {
                     subtraiValor(selected);
                 } else {
                     getFacade().remove(selected);
+                    subtraiValorMesa(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -124,8 +136,21 @@ public class PagamentoController implements Serializable {
         return getFacade().findAll();
     }
 
-    public void subtraiValor(Pagamento selected) {
-        System.out.println("o que tem " + selected.getMesaMesaId());    
+    public void subtraiValor(Pagamento pagamento) {
+        
+        Long mesa = pagamento.getMesaMesaId().getMesaId();
+        double valorPago = pagamento.getValorPago();
+        
+        getMesaFacade().insereValorMesa(mesa, valorPago);
+    }
+    
+    public void subtraiValorMesa(Pagamento pagamento) {
+        
+        Long mesa = pagamento.getMesaMesaId().getMesaId();
+        double valorPago = pagamento.getValorPago();
+        
+        getMesaFacade().subtraiValorMesa(mesa, valorPago);
+        
     }
 
     @FacesConverter(forClass = Pagamento.class)

@@ -11,16 +11,18 @@
         <p:dialog header="Mesa" widgetVar="MesaViewDialog" modal="true"
                           resizable="false" appendTo="@(body)" >              
                    
-                    <h:form id="FechaMesaViewForm">
-                        <h:panelGroup id="display">
-                            <p:outputPanel  id="FechaMesaViewForm" style="text-align:center;">
-                                <p:dataTable id="datalist" value="#{mesaController.selected.lancamentoList}" var="lanc"
-                                 selectionMode="single" 
+            <h:form id="FechaMesaViewForm" prependId="false">
+                <h:panelGroup id="display">
+                    <p:outputPanel id="FechaMesaViewPanel" style="text-align:center;">
+                        <p:dataTable id="datalist" value="#{mesaController.selected.lancamentoList}" var="lanc"
                                  rowKey="#{lanc.idLancamento}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
+                            <h:outputText class="valor-total-lancamento" value="#{lanc.valorTotalLancamento}"/>
+
+                                    
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ViewProdutoLabel_produto}"/>
@@ -45,13 +47,25 @@
                             </f:facet>
                             <h:outputText class="valor-total-lancamento" value="#{lanc.valorTotalLancamento}"/>
                         </p:column>
-                                    
                     </p:dataTable>
-                                
                 </p:outputPanel>
-                            <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
+                            
                         </h:panelGroup>
+                        <h:outputText class="valor-total" value="Valor Pago"/>
                         
+                          <p:dataTable id="datalistPago" value="#{mesaController.selected}" var="mesa"
+                                 rowKey="#{mesa.mesaId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Valor Pago"/>
+                            </f:facet>
+                            <h:outputText id="valor-pago" class="valor-pago" value="#{mesa.valorPago}"/>
+                        </p:column>
+                    </p:dataTable> 
             </h:form>
             <br/>
             <h:form id="resulta">
@@ -70,6 +84,7 @@
                                  update="fechaMesaForm"
                                  oncomplete="PF('FechaMesaDialog').show()"/>
 
+                <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
             </h:form>        
                     
                 </p:dialog>  

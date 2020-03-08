@@ -52,7 +52,7 @@ public class LancamentoFacade extends AbstractFacade<Lancamento> {
         
         lancamento.setValorTotalLancamento(total);
         
-        mesaFacade.insereValorMesa(lancamento.getMesaMesaId(), total);
+       // mesaFacade.insereValorMesa(lancamento.getMesaMesaId().getMesaId(), total);
         
         em.persist(lancamento);
         

@@ -29,33 +29,60 @@ public class MesaFacade extends AbstractFacade<Mesa> {
         super(Mesa.class);
     }
     
-    public void insereValorMesa(Mesa mesa, Double valorLancado) {
-        System.out.println("mesaaa " + mesa.getValorTotal());
-        System.out.println("valor lancado " + valorLancado);
+    public void insereValorMesa(Long mesa, Double valorLancado) {
         
-        Mesa mesaNova = valorTotalMesa(mesa);
+        System.out.println("mesa chegada " + mesa + "valor " + valorLancado);
+                         
+        double valorParcial = 0.0;
         
-        System.out.println("mesa nova" + mesaNova.getValorTotal());
+        Mesa mesaParcial = em.find(Mesa.class, mesa);
         
-        double valorParcial;
+        System.out.println("mesa parcial = " + mesaParcial.getNumeroMesa());
         
-        if(mesaNova.getValorTotal() == null) {
-            valorParcial = 0;
-        } else {
-            valorParcial = mesaNova.getValorTotal();
-        }
+        valorParcial = mesaParcial.getValorPago();
         
-        System.out.println("valor parcial " + valorParcial);
+        System.out.println("Valor parcial" + valorParcial);
         
-        double total = 0;
-        total = valorLancado + valorParcial;
-        mesa.setValorTotal(total);
+        double total = 0.0;
         
-        em.merge(mesa);
+        total = valorParcial + valorLancado;
+        
+        System.out.println("valor total " + total);
+        
+        mesaParcial.setValorPago(total);
+        
+        em.merge(mesaParcial);
     }
     
     public Mesa valorTotalMesa(Mesa mesa) {
         return em.find(Mesa.class, mesa.getMesaId());
+        
+    }
+    
+    public double buscaValorPago(Long id){
+        double valorPago = 0.0;
+        Mesa valorPagoMesa;
+        valorPagoMesa = em.find(Mesa.class, id);
+        valorPago = valorPagoMesa.getValorPago();
+        return valorPago;
+    }
+
+    public void subtraiValorMesa(Long mesaId, double valorPago) {
+        Mesa mesa;
+        
+        mesa = em.find(Mesa.class, mesaId);
+        
+        double valorPagoBusca = 0.0;
+        
+        valorPagoBusca = buscaValorPago(mesaId);
+        
+        double total = 0.0;
+        
+        total = valorPagoBusca - valorPago;
+        
+        mesa.setValorPago(total);
+        
+        em.merge(mesa);
         
     }
 }

@@ -26,7 +26,7 @@
                                            itemValue="#{mesaMesaIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pagamentoController.create}" value="#{bundle.Save}" update="display,:FechaMesaViewForm:datalist,:growl" oncomplete="handleSubmit(args,'FechaMesaDialog');"/>
+                    <p:commandButton actionListener="#{pagamentoController.create}" onclick="MesaViewDialog.hide()" value="#{bundle.Save}" update="display,:FechaMesaViewForm:datalist,:growl" oncomplete="handleSubmit(args,'FechaMesaDialog');" />
                     <p:commandButton value="#{bundle.Cancel}" onclick="PagamentoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

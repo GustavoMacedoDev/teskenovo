@@ -1,7 +1,5 @@
 function somar() {
     
-    console.log('opa');
-    
     var teste = null;
     teste = document.getElementsByClassName('valor-total-lancamento');
 
@@ -11,9 +9,17 @@ function somar() {
         total = total + valor;
     }
     
-    console.log(total);
+    var totalPago = 0.0;
+
+    totalPago = document.getElementById("datalistPago:0:valor-pago").innerHTML;
     
-    document.getElementById('resulta:resultado').innerHTML = total;
+    console.log(totalPago);
+    
+    var totalMenosPago;
+    
+    totalMenosPago = total - totalPago;
+            
+    document.getElementById('resulta:resultado').innerHTML = totalMenosPago;
 };
 
 function handleSubmit(args, dialog) {

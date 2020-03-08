@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -61,7 +60,7 @@ public class Mesa implements Serializable {
     private List<Pedido> pedidoList;
     
     @Column(scale = 12, precision = 2, name = "valor_pago")
-    private Double valorPago;
+    private Double valorPago = 0.0;
     
     @Column(scale = 12, precision = 2, name = "valor_total")
     private Double valorTotal;
