@@ -65,6 +65,13 @@ public class Lancamento implements Serializable {
     
     @Column(name = "valor_pago")
     private double valorPago;
+    
+    @JoinColumn(name = "adicional_id", referencedColumnName = "id_adicional")
+    @ManyToOne
+    private Adicional adicional1;
+    
+    @Column(name = "pago")
+    private int pago;
 
     public Lancamento() {
     }
@@ -161,5 +168,22 @@ public class Lancamento implements Serializable {
         this.valorTotalLancamento = valorTotalLancamento;
     }
 
+    public Adicional getAdicional() {
+        return adicional1;
+    }
+
+    public void setAdicional(Adicional adicional1) {
+        this.adicional1 = adicional1;
+    }
+
+    public int getPago() {
+        return pago;
+    }
+
+    public void setPago(int pago) {
+        this.pago = pago;
+    }
+
+    
     
 }

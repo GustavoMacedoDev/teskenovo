@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="MesaListForm">
                 <p:panel header="#{bundle.ListMesaTitle}">
-                <p:dataTable id="datalist" value="#{mesaController.items}" var="item"
+                <p:dataTable id="datalist" value="#{mesaController.mesas}" var="item"
                                  selectionMode="single" selection="#{mesaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.mesaId}"

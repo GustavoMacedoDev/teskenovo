@@ -118,11 +118,11 @@
 				<text><![CDATA[Quantidade:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="58" y="40" width="180" height="20" uuid="fe38f26b-d05e-4219-b324-4068b4290b62"/>
+				<reportElement positionType="FixRelativeToBottom" x="60" y="40" width="178" height="20" uuid="fe38f26b-d05e-4219-b324-4068b4290b62"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{quantidadeId}.getQuantidade()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $F{quantidadeId}.getQuantidade()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="60" width="58" height="20" uuid="b1c1ef7f-37f9-4fcd-889f-a09debf73e07"/>
@@ -132,11 +132,11 @@
 				<text><![CDATA[Observação:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="58" y="60" width="180" height="20" uuid="d0aee1af-1de6-4914-afa2-d23ed5e20976"/>
+				<reportElement positionType="FixRelativeToBottom" x="60" y="60" width="178" height="20" uuid="d0aee1af-1de6-4914-afa2-d23ed5e20976"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[  $F{observacao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

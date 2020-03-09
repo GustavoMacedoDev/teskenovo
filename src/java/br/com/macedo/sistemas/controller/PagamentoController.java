@@ -97,10 +97,8 @@ public class PagamentoController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    
-                        
                     getFacade().edit(selected);
-                    subtraiValor(selected);
+                    insereValor(selected);
                 } else {
                     getFacade().remove(selected);
                     subtraiValorMesa(selected);
@@ -136,12 +134,12 @@ public class PagamentoController implements Serializable {
         return getFacade().findAll();
     }
 
-    public void subtraiValor(Pagamento pagamento) {
+    public void insereValor(Pagamento pagamento) {
         
-        Long mesa = pagamento.getMesaMesaId().getMesaId();
+        Long idMesa = pagamento.getMesaMesaId().getMesaId();
         double valorPago = pagamento.getValorPago();
         
-        getMesaFacade().insereValorMesa(mesa, valorPago);
+        getMesaFacade().insereValorMesa(idMesa, valorPago);
     }
     
     public void subtraiValorMesa(Pagamento pagamento) {

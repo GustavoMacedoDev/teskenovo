@@ -30,6 +30,12 @@
                                            var="quantidadeIdItem"
                                            itemValue="#{quantidadeIdItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="Adicional: " for="quantidadeId" />
+                        <p:selectOneMenu id="adicional1" value="#{lancamentoController.selected.adicional}" >
+                            <f:selectItems value="#{adicionalController.itemsAvailableSelectOne}"
+                                           var="adicionalIdItem"
+                                           itemValue="#{adicionalIdItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="Observação" for="observacao" />
                         <p:inputText id="observacao" value="#{lancamentoController.selected.observacao}" title="Observação" />
                         

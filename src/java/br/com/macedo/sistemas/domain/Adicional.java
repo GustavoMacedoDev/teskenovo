@@ -49,6 +49,9 @@ public class Adicional implements Serializable {
     private Double valorAdicional;
     @OneToMany(mappedBy = "adicionalIdAdicional")
     private List<DetalheAdicional> detalheAdicionalList;
+    
+    @OneToMany(mappedBy = "adicional1")
+    private List<Lancamento> lancamentoList;
 
     public Adicional() {
     }
@@ -112,7 +115,16 @@ public class Adicional implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Adicional[ idAdicional=" + idAdicional + " ]";
+        return "" + descricao ;
     }
+
+    public List<Lancamento> getLancamentoList() {
+        return lancamentoList;
+    }
+
+    public void setLancamentoList(List<Lancamento> lancamentoList) {
+        this.lancamentoList = lancamentoList;
+    }
+    
     
 }

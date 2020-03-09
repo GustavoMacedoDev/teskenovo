@@ -20,9 +20,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.springframework.web.bind.annotation.RestController;
 
 @Named("mesaController")
 @SessionScoped
+@RestController
 public class MesaController implements Serializable {
 
     @EJB
@@ -32,22 +34,21 @@ public class MesaController implements Serializable {
     private LancamentoFacade lancamentoFacade;
      
     private List<Mesa> items = null;
+    
+    private List<Mesa> mesas = null;
+    
     private Mesa selected;
     private List<Lancamento> lancamentosByMesa;
     
     public MesaController() {
     }
 
-    public Mesa getSelected() {
+     public Mesa getSelected() {
         
         if(selected != null) {
         
             selected.setLancamentoList(getLancamentosByMesa(selected.getMesaId()));
             selected.setValorPago(valorPago(selected.getMesaId()));
-            
-            System.out.println("valor pago" + selected.getValorPago());
-            
-            
             return selected;
         }
         
@@ -101,12 +102,17 @@ public class MesaController implements Serializable {
         return items;
     }
     
+    public List<Mesa> getMesas() {
+        if (mesas == null) {
+            mesas = getFacade().findAll();
+        }
+        return mesas;
+    }
+    
     
     public List<Lancamento> getLancamentosByMesa(Long id) {
         
-        
         lancamentosByMesa = lancamentoFacade.getLancamentosMesa(id);
-        
        
         return lancamentosByMesa;
     }
@@ -203,6 +209,12 @@ public class MesaController implements Serializable {
 
     }
     
+    
+    public void fechaMesa() {
+        
+        ejbFacade.fechaMesa(selected.getMesaId());
+        
+    }
     
 
 }

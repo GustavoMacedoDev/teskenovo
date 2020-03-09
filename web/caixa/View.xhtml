@@ -79,12 +79,13 @@
                 
                 <p:commandButton id="createButton"
                                  icon="ui-icon-plus"
-                                 value="Fechar Mesa"
+                                 value="Lancar Valor"
                                  actionListener="#{pagamentoController.prepareCreate}"
                                  update="fechaMesaForm"
                                  oncomplete="PF('FechaMesaDialog').show()"/>
 
                 <p:commandButton value="#{bundle.Close}" onclick="MesaViewDialog.hide()"/>
+                <p:commandButton value="Encerra Mesa" actionListener="#{mesaController.fechaMesa()}" onclick="MesaViewDialog.hide()" />
             </h:form>        
                     
                 </p:dialog>  
